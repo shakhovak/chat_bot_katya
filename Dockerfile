@@ -17,6 +17,8 @@ ENV HOME=/home/user \
 
 WORKDIR $HOME/app
 
+EXPOSE 5000
+
 COPY --chown=user . $HOME/app
 
-CMD ["gunicorn", "-b", "0.0.0.0:7860", "app:app"]
+CMD ["gunicorn", "--timeout", "1000", "app:app", "-b", "0.0.0.0:5000"]
