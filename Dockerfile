@@ -22,3 +22,4 @@ EXPOSE 5000
 COPY --chown=user . $HOME/app
 
 CMD ["gunicorn", "--timeout", "1000", "app:app", "-b", "0.0.0.0:5000"]
+#CMD ["python", "app.py"]
