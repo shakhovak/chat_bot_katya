@@ -95,7 +95,7 @@
 ├───static - оформление веб-интерфейса
 │       style.css
 ├───data
-│       low_score_scripts.pkl - обучающие данные для reranker
+│       low_score_scripts.pkl - сценарии при низких скорах похожести
 │       scripts_vectors.pkl - база данных контекст+воппрос на основе векторов LaBSe
 │       scripts.pkl - исходные данные
 ```
