@@ -18,6 +18,7 @@ from dialog_tag import DialogTag
 
 # this class representes main functions of retrieve bot
 
+
 class ChatBot:
     def __init__(self):
         self.vect_data = []
@@ -38,13 +39,13 @@ class ChatBot:
         with open("data/scripts_vectors.pkl", "rb") as fp:
             self.vect_data = pickle.load(fp)
         self.scripts = pd.read_pickle("data/scripts.pkl")
-        with open('data/low_score_sripts.json', 'r') as f:
+        with open("data/low_score_sripts.json", "r") as f:
             self.low_scoring_list = json.load(f)
         self.tag_model = DialogTag("distilbert-base-uncased")
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.ranking_model = SentenceTransformer(
-         "Shakhovak/chatbot_sentence-transformer"
-         )  # # sentence-transformers/LaBSE  or sentence-transformers/all-mpnet-base-v2 or Shakhovak/chatbot_sentence-transformer
+            "Shakhovak/chatbot_sentence-transformer"
+        )  # # sentence-transformers/LaBSE  or sentence-transformers/all-mpnet-base-v2 or Shakhovak/chatbot_sentence-transformer
 
         self.tokenizer_reranking = AutoTokenizer.from_pretrained("bert-base-uncased")
         self.reranking_model = pipeline(
@@ -73,10 +74,10 @@ class ChatBot:
         )
         if top_scores[0] < 0.9:
             if intent == "greetings":
-                answer = random.choice(self.low_scoring_list['greetings'])
+                answer = random.choice(self.low_scoring_list["greetings"])
                 self.conversation_history.clear()
             else:
-                answer = random.choice(self.low_scoring_list['generic'])
+                answer = random.choice(self.low_scoring_list["generic"])
                 self.conversation_history.clear()
         else:
             # test candidates and collects them with label 0 to dictionary
